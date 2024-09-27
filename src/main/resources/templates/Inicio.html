@@ -18,7 +18,6 @@
         </div>
 
         <div class="mb-3">
-
             <input type="text" id="placa" name="placa" placeholder="Ejemplo: RHE-533"
                    class="form-control form-control-lg" required minlength="7" maxlength="7">
         </div>
@@ -28,7 +27,7 @@
         </div>
 
         <hr>
-        <div class="alert alert-danger" role="alert" th:if="${rueditasModel.codigo != '00' && rueditasModel.codigo != ''}">
+        <div class="alert alert-danger text-center" role="alert" th:if="${rueditasModel.codigo != '00' && rueditasModel.codigo != ''}">
             <span th:text="${rueditasModel.mensaje}"></span>
         </div>
 
@@ -51,16 +50,7 @@
         }
     });
 
-    function validatePlaca() {
-        const placa = document.getElementById("placa").value;
-        const regex = /^[A-Z]{3}-[0-9]{3}$/;
 
-        if (!regex.test(placa)) {
-            document.getElementById("error-msg").style.display = "block";
-            return false;
-        }
-        return true;
-    }
 </script>
 
 </html>

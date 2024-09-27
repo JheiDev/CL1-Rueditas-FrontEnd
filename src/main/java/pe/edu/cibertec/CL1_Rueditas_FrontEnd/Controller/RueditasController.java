@@ -22,8 +22,8 @@ public class RueditasController {
 
     @GetMapping("/buscar")
     public String buscar(Model model){
-        RueditasModel rueditasModel = new RueditasModel("00", "", "",
-                "", "", "", "");
+        RueditasModel rueditasModel = new RueditasModel("00", "",
+                "", "", "", "", "");
         model.addAttribute("rueditasModel", rueditasModel);
         return "Inicio";
     }
@@ -31,8 +31,8 @@ public class RueditasController {
     @PostMapping("/validation")
     public String validation(@RequestParam("placa") String placa, Model model){
         if (placa == null || placa.trim().length() == 0){
-            RueditasModel rueditasModel = new RueditasModel("01", "Error: Ingrese una placa valida", "",
-                    "", "", "", "");
+            RueditasModel rueditasModel = new RueditasModel("01", "Error: Ingrese una placa valida",
+                    "", "", "", "", "");
             return "Inicio";
         }
 
@@ -48,17 +48,13 @@ public class RueditasController {
                 model.addAttribute("rueditasModel", responseDTO);
                 return "Detalles";
 
-            } else if (responseDTO != null && "01".equals(responseDTO.codigo())) {
-                model.addAttribute("rueditasModel", new RueditasModel("01", "Placa no encontrada", "", "", "", "", ""));
-                return "Inicio";
-
             } else {
-                model.addAttribute("rueditasModel", new RueditasModel("01", "Ingrese una placa válida", "", "", "", "", ""));
+                model.addAttribute("rueditasModel", new RueditasModel("01", "Ingrese una placa valida", "", "", "", "", ""));
                 return "Inicio";
             }
 
         } catch (RestClientException e) {
-            model.addAttribute("rueditasModel", new RueditasModel("99", "Error al buscar el vehículo", "", "", "", "", ""));
+            model.addAttribute("rueditasModel", new RueditasModel("99", "Error al buscar el vehículo", "", "" , "", "", ""));
             return "Inicio";
         }
 
